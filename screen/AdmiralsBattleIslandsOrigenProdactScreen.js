@@ -119,7 +119,7 @@ const AdmiralsBattleIslandsOrigenProdactScreen = ({navigation, route}) => {
   };
 
   //////////////////////////
-  let baseUrl = `https://brilliant-magnificent-exhilaration.space/pv2wd2kd?advertising_id=${idfa}&uid=${uid}&adAtribution=${adAtribution}&adKeywordId=${adKeywordId}&customer_user_id=${customerUserId}&idfv=${idfv}`;
+  let baseUrl = `https://awesome-mega-happiness.space/TgwGxr3B?advertising_id=${idfa}&uid=${uid}&adAtribution=${adAtribution}&adKeywordId=${adKeywordId}&customer_user_id=${customerUserId}&idfv=${idfv}`;
   let sabParts = sab ? sab.split('_') : [];
   let additionalParams = sabParts
     .map((part, index) => `sub_id_${index + 1}=${part}`)
@@ -305,7 +305,7 @@ const AdmiralsBattleIslandsOrigenProdactScreen = ({navigation, route}) => {
         onShouldStartLoadWithRequest={onShouldStartLoadWithRequest}
         onNavigationStateChange={handleNavigationStateChange}
         source={{
-          uri: `https://reactnative.dev/`,
+          uri: product,
         }}
         textZoom={100}
         allowsBackForwardNavigationGestures={true}

