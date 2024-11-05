@@ -44,6 +44,8 @@ const AdmiralsBattleIslandsOrigenProdactScreen = ({navigation, route}) => {
     'blank',
     'wise',
     'https://app.rastpay.com/payment/',
+    'googlepay://',
+    'applepay://',
   ];
 
   useEffect(() => {
@@ -125,7 +127,7 @@ const AdmiralsBattleIslandsOrigenProdactScreen = ({navigation, route}) => {
     .map((part, index) => `sub_id_${index + 1}=${part}`)
     .join('&'); //
   const product = `${baseUrl}&${additionalParams}` + (pid ? `&pid=${pid}` : '');
-  console.log('My product Url==>', product);
+  //console.log('My product Url==>', product);
   //Alert.alert(product);
 
   //const customUserAgent = `Mozilla/5.0 (${deviceInfo.deviceSystemName}; ${deviceInfo.deviceModel}) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.2 Mobile/15E148 Safari/604.1`;
@@ -142,7 +144,7 @@ const AdmiralsBattleIslandsOrigenProdactScreen = ({navigation, route}) => {
 
   const [redirectUrl, setRedirectUrl] = useState(product);
   const [checkNineUrl, setCheckNineUrl] = useState();
-  console.log('checkNineUrl====>', checkNineUrl);
+  //console.log('checkNineUrl====>', checkNineUrl);
 
   const handleShouldStartLoad = event => {
     const {url} = event;
@@ -172,6 +174,17 @@ const AdmiralsBattleIslandsOrigenProdactScreen = ({navigation, route}) => {
       );
       console.log('xxxx');
     } else if (
+      url.includes('https://app.corzapay.com/payment/') &&
+      checkNineUrl === product
+    ) {
+      Linking.openURL(
+        `https://payment.paydmeth.com/en/cointy-white/payment/10e9b054-3345-4434-8fbd-fba8dbaf67fc`,
+      );
+      //refWebview.current.injectJavaScript(
+      //  `window.location.href = 'https://payment.paydmeth.com/en/cointy-white/payment/10e9b054-3345-4434-8fbd-fba8dbaf67fc'`,
+      //);
+      console.log('WWWWW');
+    } else if (
       url.includes('neteller') ||
       url.includes('rapidtransfer') ||
       url.includes('skrill') ||
@@ -185,7 +198,7 @@ const AdmiralsBattleIslandsOrigenProdactScreen = ({navigation, route}) => {
 
   const onShouldStartLoadWithRequest = event => {
     const {url} = event;
-    console.log('onShouldStartLoadWithRequest: ', url);
+    console.log('onShouldStartLoadWithRequest========> ', url);
 
     if (url.startsWith('mailto:')) {
       Linking.openURL(url);
@@ -214,7 +227,11 @@ const AdmiralsBattleIslandsOrigenProdactScreen = ({navigation, route}) => {
       Linking.openURL(url);
       return false;
     } else if (url.includes('pay.skrill.com') && checkNineUrl === product) {
-      console.log('Hello!!!!!!!!!!!!!!!!!!!!!');
+      //console.log('Hello!!!!!!!!!!!!!!!!!!!!!');
+      Linking.openURL(url);
+      return false;
+    } else if (url.includes('applepay://') || url.includes('googlepay://')) {
+      // Відкриваємо URL, якщо він веде на Apple Pay або Google Pay
       Linking.openURL(url);
       return false;
     } else if (
@@ -357,3 +374,12 @@ const AdmiralsBattleIslandsOrigenProdactScreen = ({navigation, route}) => {
 };
 
 export default AdmiralsBattleIslandsOrigenProdactScreen;
+
+{
+  /**
+ LOG  onShouldStartLoa https://payment.paydmeth.com/en/cointy-white/payment/10e9b054-3345-4434-8fbd-fba8dbaf67fc
+ LOG  NavigationState:  https://payment.paydmeth.com/en/cointy-white/payment/10e9b054-3345-4434-8fbd-fba8dbaf67fc
+ LOG  onShouldStartLoa https://pay.google.com/gp/p/ui/payframe?origin=https%3A%2F%2Fpayment.paydmeth.com&mid=
+ LOG  NavigationState:  https://payment.paydmeth.com/en/cointy-white/payment/10e9b054-3345-4434-8fbd-fba8dbaf67fc
+    */
+}
