@@ -187,6 +187,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {LogLevel, OneSignal} from 'react-native-onesignal';
 import appsFlyer from 'react-native-appsflyer';
 import DeviceInfo from 'react-native-device-info';
+import AppleAdsAttribution from '@hexigames/react-native-apple-ads-attribution';
 
 const Loaders = [
   require('./assets/image/loader/admiral1.png'),
@@ -206,10 +207,10 @@ function App() {
   console.log('appsUid==>', appsUid);
   console.log('sab1==>', sab1);
   console.log('pid==>', pid);
-  //const [adServicesToken, setAdServicesToken] = useState(null);
+  const [adServicesToken, setAdServicesToken] = useState(null);
   ////console.log('adServicesToken', adServicesToken);
-  //const [adServicesAtribution, setAdServicesAtribution] = useState(null);
-  //const [adServicesKeywordId, setAdServicesKeywordId] = useState(null);
+  const [adServicesAtribution, setAdServicesAtribution] = useState(null);
+  const [adServicesKeywordId, setAdServicesKeywordId] = useState(null);
   //////////
   const [customerUserId, setCustomerUserId] = useState(null);
   //console.log('customerUserID==>', customerUserId);
@@ -227,9 +228,9 @@ function App() {
     appsUid,
     sab1,
     pid,
-    //adServicesToken,
-    //adServicesAtribution,
-    //adServicesKeywordId,
+    adServicesToken,
+    adServicesAtribution,
+    adServicesKeywordId,
     customerUserId,
     idfv,
   ]);
@@ -241,9 +242,9 @@ function App() {
         appsUid,
         sab1,
         pid,
-        //adServicesToken,
-        //adServicesAtribution,
-        //adServicesKeywordId,
+        adServicesToken,
+        adServicesAtribution,
+        adServicesKeywordId,
         customerUserId,
         idfv,
       };
@@ -266,9 +267,9 @@ function App() {
         setAppsUid(parsedData.appsUid);
         setSab1(parsedData.sab1);
         setPid(parsedData.pid);
-        //setAdServicesToken(parsedData.adServicesToken);
-        //setAdServicesAtribution(parsedData.adServicesAtribution);
-        //setAdServicesKeywordId(parsedData.adServicesKeywordId);
+        setAdServicesToken(parsedData.adServicesToken);
+        setAdServicesAtribution(parsedData.adServicesAtribution);
+        setAdServicesKeywordId(parsedData.adServicesKeywordId);
         setCustomerUserId(parsedData.customerUserId);
         setIdfv(parsedData.idfv);
       } else {
@@ -276,13 +277,39 @@ function App() {
         await requestOneSignallFoo();
         await performAppsFlyerOperations();
         await getUidApps();
-        //await fetchAdServicesToken(); // Вставка функції для отримання токену
-        //await fetchAdServicesAttributionData(); // Вставка функції для отримання даних
+        await fetchAdServicesToken(); // Вставка функції для отримання токену
+        await fetchAdServicesAttributionData(); // Вставка функції для отримання даних
 
         onInstallConversionDataCanceller();
       }
     } catch (e) {
       console.log('Помилка отримання даних:', e);
+    }
+  };
+
+  ///////// Ad Attribution
+  //fetching AdServices token
+  const fetchAdServicesToken = async () => {
+    try {
+      const token = await AppleAdsAttribution.getAdServicesAttributionToken();
+      setAdServicesToken(token);
+      //Alert.alert('token', adServicesToken);
+    } catch (error) {
+      await fetchAdServicesToken();
+      //console.error('Помилка при отриманні AdServices токену:', error.message);
+    }
+  };
+
+  //fetching AdServices data
+  const fetchAdServicesAttributionData = async () => {
+    try {
+      const data = await AppleAdsAttribution.getAdServicesAttributionData();
+      const attributionValue = data.attribution ? '1' : '0';
+      setAdServicesAtribution(attributionValue);
+      setAdServicesKeywordId(data.keywordId);
+      //Alert.alert('data', data)
+    } catch (error) {
+      console.error('Помилка при отриманні даних AdServices:', error.message);
     }
   };
 
@@ -426,7 +453,7 @@ function App() {
   };
 
   ///////// Route useEff
-  //
+  // awesome-mega-happiness.space
   useEffect(() => {
     const checkUrl = `https://reactnative.dev/`;
 
@@ -458,19 +485,17 @@ function App() {
       return (
         <Stack.Navigator>
           <Stack.Screen
-            initialParams={
-              {
-                //idfa: idfa,
-                //sab1: sab1,
-                //pid: pid,
-                //uid: appsUid,
-                //adToken: adServicesToken,
-                //adAtribution: adServicesAtribution,
-                //adKeywordId: adServicesKeywordId,
-                //customerUserId: customerUserId,
-                //idfv: idfv,
-              }
-            }
+            initialParams={{
+              idfa: idfa,
+              sab1: sab1,
+              pid: pid,
+              uid: appsUid,
+              adToken: adServicesToken,
+              adAtribution: adServicesAtribution,
+              adKeywordId: adServicesKeywordId,
+              customerUserId: customerUserId,
+              idfv: idfv,
+            }}
             name="AdmiralsBattleIslandsOrigenProdactScreen"
             component={AdmiralsBattleIslandsOrigenProdactScreen}
             options={{headerShown: false}}

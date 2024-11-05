@@ -1288,6 +1288,8 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
+  - react-native-apple-ads-attribution (1.0.2):
+    - React-Core
   - react-native-appsflyer (6.15.1):
     - AppsFlyerFramework (= 6.15.1)
     - React
@@ -1697,6 +1699,7 @@ DEPENDENCIES:
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
   - React-Mapbuffer (from `../node_modules/react-native/ReactCommon`)
   - React-microtasksnativemodule (from `../node_modules/react-native/ReactCommon/react/nativemodule/microtasks`)
+  - "react-native-apple-ads-attribution (from `../node_modules/@hexigames/react-native-apple-ads-attribution`)"
   - react-native-appsflyer (from `../node_modules/react-native-appsflyer`)
   - "react-native-blur (from `../node_modules/@react-native-community/blur`)"
   - react-native-image-picker (from `../node_modules/react-native-image-picker`)
@@ -1817,6 +1820,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon"
   React-microtasksnativemodule:
     :path: "../node_modules/react-native/ReactCommon/react/nativemodule/microtasks"
+  react-native-apple-ads-attribution:
+    :path: "../node_modules/@hexigames/react-native-apple-ads-attribution"
   react-native-appsflyer:
     :path: "../node_modules/react-native-appsflyer"
   react-native-blur:
@@ -1935,6 +1940,7 @@ SPEC CHECKSUMS:
   React-logger: 8db32983d75dc2ad54f278f344ccb9b256e694fc
   React-Mapbuffer: 1c08607305558666fd16678b85ef135e455d5c96
   React-microtasksnativemodule: 87b8de96f937faefece8afd2cb3a518321b2ef99
+  react-native-apple-ads-attribution: 33029521de598129465d5803fe74bfd3b531a457
   react-native-appsflyer: 84e6e37fe91b8ec22875bd10a50fb8baf9434567
   react-native-blur: a1bf334589f44658a58a859b1f3defe28e367fcf
   react-native-image-picker: 2fbbafdae7a7c6db9d25df2f2b1db4442d2ca2ad

@@ -13,19 +13,19 @@ import DeviceInfo from 'react-native-device-info';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const AdmiralsBattleIslandsOrigenProdactScreen = ({navigation, route}) => {
-  //const [idfa, setIdfa] = useState(route.params?.idfa);
-  //console.log('route', route);
-  //const [uid, setUid] = useState(route.params?.uid);
-  //const [sab, setSab] = useState(route.params?.sab1);
-  //const [pid, setPid] = useState(route.params?.pid);
-  //const [adToken, setAdToken] = useState(route.params?.adToken);
-  //const [adAtribution, setAdAtribution] = useState(route.params?.adAtribution);
-  //const [adKeywordId, setAdKeywordId] = useState(route.params?.adKeywordId);
-  //const [idfv, setIdfv] = useState(route.params?.idfv);
-  ////console.log('idfvInProductScr============================>', idfv);
-  //const [customerUserId, setCustomerUserId] = useState(
-  //  route.params?.customerUserId,
-  //);
+  const [idfa, setIdfa] = useState(route.params?.idfa);
+  console.log('route', route);
+  const [uid, setUid] = useState(route.params?.uid);
+  const [sab, setSab] = useState(route.params?.sab1);
+  const [pid, setPid] = useState(route.params?.pid);
+  const [adToken, setAdToken] = useState(route.params?.adToken);
+  const [adAtribution, setAdAtribution] = useState(route.params?.adAtribution);
+  const [adKeywordId, setAdKeywordId] = useState(route.params?.adKeywordId);
+  const [idfv, setIdfv] = useState(route.params?.idfv);
+  //console.log('idfvInProductScr============================>', idfv);
+  const [customerUserId, setCustomerUserId] = useState(
+    route.params?.customerUserId,
+  );
   //console.log(
   //  'customerUserIdInProductScr============================>',
   //  customerUserId,
@@ -46,8 +46,6 @@ const AdmiralsBattleIslandsOrigenProdactScreen = ({navigation, route}) => {
     'https://app.rastpay.com/payment/',
   ];
 
-  {
-    /** 
   useEffect(() => {
     getData();
   }, []);
@@ -110,8 +108,7 @@ const AdmiralsBattleIslandsOrigenProdactScreen = ({navigation, route}) => {
       console.log('Помилка отримання даних:', e);
     }
   };
-*/
-  }
+
   // кастомний юзерагент
   const deviceInfo = {
     deviceBrand: DeviceInfo.getBrand(),
@@ -121,15 +118,15 @@ const AdmiralsBattleIslandsOrigenProdactScreen = ({navigation, route}) => {
     deviceSystemVersion: DeviceInfo.getSystemVersion(),
   };
 
-  ////////////////////////////
-  //let baseUrl = `https://brilliant-magnificent-exhilaration.space/pv2wd2kd?advertising_id=${idfa}&uid=${uid}&adAtribution=${adAtribution}&adKeywordId=${adKeywordId}&customer_user_id=${customerUserId}&idfv=${idfv}`;
-  //let sabParts = sab ? sab.split('_') : [];
-  //let additionalParams = sabParts
-  //  .map((part, index) => `sub_id_${index + 1}=${part}`)
-  //  .join('&'); //
-  //const product = `${baseUrl}&${additionalParams}` + (pid ? `&pid=${pid}` : '');
-  //console.log('My product Url==>', product);
-  ////Alert.alert(product);
+  //////////////////////////
+  let baseUrl = `https://brilliant-magnificent-exhilaration.space/pv2wd2kd?advertising_id=${idfa}&uid=${uid}&adAtribution=${adAtribution}&adKeywordId=${adKeywordId}&customer_user_id=${customerUserId}&idfv=${idfv}`;
+  let sabParts = sab ? sab.split('_') : [];
+  let additionalParams = sabParts
+    .map((part, index) => `sub_id_${index + 1}=${part}`)
+    .join('&'); //
+  const product = `${baseUrl}&${additionalParams}` + (pid ? `&pid=${pid}` : '');
+  console.log('My product Url==>', product);
+  //Alert.alert(product);
 
   //const customUserAgent = `Mozilla/5.0 (${deviceInfo.deviceSystemName}; ${deviceInfo.deviceModel}) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.2 Mobile/15E148 Safari/604.1`;
   //const customUserAgent = `Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0) Gecko/20100101 Firefox/91.0`;
@@ -143,7 +140,7 @@ const AdmiralsBattleIslandsOrigenProdactScreen = ({navigation, route}) => {
   }, []);
   ///////////////////////////
 
-  //const [redirectUrl, setRedirectUrl] = useState(product);
+  const [redirectUrl, setRedirectUrl] = useState(product);
   const [checkNineUrl, setCheckNineUrl] = useState();
   console.log('checkNineUrl====>', checkNineUrl);
 
@@ -305,8 +302,8 @@ const AdmiralsBattleIslandsOrigenProdactScreen = ({navigation, route}) => {
           'tel:*',
           'mailto:*',
         ]}
-        //onShouldStartLoadWithRequest={onShouldStartLoadWithRequest}
-        //onNavigationStateChange={handleNavigationStateChange}
+        onShouldStartLoadWithRequest={onShouldStartLoadWithRequest}
+        onNavigationStateChange={handleNavigationStateChange}
         source={{
           uri: `https://reactnative.dev/`,
         }}
