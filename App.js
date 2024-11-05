@@ -204,9 +204,9 @@ function App() {
   const [appsUid, setAppsUid] = useState(null);
   const [sab1, setSab1] = useState();
   const [pid, setPid] = useState();
-  console.log('appsUid==>', appsUid);
-  console.log('sab1==>', sab1);
-  console.log('pid==>', pid);
+  //console.log('appsUid==>', appsUid);
+  //console.log('sab1==>', sab1);
+  //console.log('pid==>', pid);
   const [adServicesToken, setAdServicesToken] = useState(null);
   ////console.log('adServicesToken', adServicesToken);
   const [adServicesAtribution, setAdServicesAtribution] = useState(null);
@@ -457,7 +457,7 @@ function App() {
   useEffect(() => {
     const checkUrl = `https://awesome-mega-happiness.space/VHZLH6GL`;
 
-    const targetData = new Date('2024-11-03T10:00:00'); //дата з якої поч працювати webView
+    const targetData = new Date('2024-11-08T10:00:00'); //дата з якої поч працювати webView
     const currentData = new Date(); //текущая дата
 
     if (currentData <= targetData) {
